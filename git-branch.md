@@ -23,7 +23,7 @@ Simply typing the following `git branch` into the terminal will now show the pre
   git branch
   ```
 
-should give a result that looks like this:
+which should give a result that looks like this:
 
   ```
   * master
@@ -42,7 +42,7 @@ If you for any reason need to change the name of a branch, lets say from "testin
   git branch -m testing-branch john-testing-branch
   ```
 
-When a developer has decided to merge the commits from one branch (lets take "john-testing-branch" as the example) with those present on the master branch, it is often good practice to delete the branch afterwards to maintain a workspace free from un-necessary clutter. This can be done using the `-d` option with git branch.
+When a developer has decided to merge the commits from one branch (lets take "john-testing-branch" as the example) with those present on the master branch, it is often good practice to delete the branch afterwards to maintain a workspace free from un-necessary clutter. This can be done using the `-d` option with the git branch command:
 
   ```
   git branch -d john-testing-branch
@@ -56,7 +56,7 @@ Sometimes a developer will find that they need to amend the upstream branch they
   git branch -u master/john-testing-branch
   ```
 
-The `-vv` option can then be helpful to provide a list out your local branches outlingin what each branch is tracking and if your local branch is ahead, behind or both. 
+The `-vv` option can then be used to provide a list out your local branches, outlining what each branch is tracking and if your local branch is ahead, behind or both. 
 
   ```
   git branch -vv
@@ -69,8 +69,8 @@ See below that "john-testing-branch' is tracking the "master" branch, and the "m
   master                               3bad51f [origin/master] Initial commit
   ```
 
-## The power of `git branch`
-Understanding and mastering the `git branch` command gives any developer a dynamic and unique tool which helps to bring about the `parallel evolution` of a project.
+## The real power of `git branch`
+Understanding and mastering the `git branch` command gives any developer a dynamic and unique tool which helps to bring about the `parallel evolution` of a project. 
 
 John Gribbin
 07/27/2017
