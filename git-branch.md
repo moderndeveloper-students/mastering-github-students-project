@@ -50,10 +50,10 @@ When it is decided that commits from one branch (lets take "john-testing-branch"
 
 ## A note on Git Branch tracking
 
-Sometimes a developer will find that they need to amend the upstream branch they are tracking for a local branch they are working on, and this can be done with the help of the `-u` option. Lets take the branch example of "john-testing-branch" once again, and lets set it to track the master branch:
+Sometimes a developer will find that they need to amend the upstream branch they are tracking for a local branch they are working on, and this can be done with the help of the `-u` option. Lets take the branch example of "john-testing-branch" once again, and lets set it to track the origin:
 
   ```
-  git branch -u master/john-testing-branch
+  git branch -u origin/john-testing-branch
   ```
 
 The `-vv` option can then be used to provide a list out your local branches, outlining what each branch is tracking and if your local branch is ahead, behind or both. 
@@ -62,7 +62,7 @@ The `-vv` option can then be used to provide a list out your local branches, out
   git branch -vv
   ```
 
-See below that "john-testing-branch' is tracking the "master" branch, and the "master" branch is tracking the "origin."
+See below that "john-testing-branch" and the "master" branches are now both tracking the origin. This means that both branches can now push and pull commits to and from the origin repository (usually found on Github).
 
   ```
 * john-testing-branch                  97cc9a8 [master/john-testing-branch] 
@@ -70,7 +70,7 @@ See below that "john-testing-branch' is tracking the "master" branch, and the "m
   ```
 
 ## The real power of `git branch`
-Understanding and mastering the `git branch` command gives any developer a dynamic and unique tool which helps to bring about the `parallel evolution` of a project. 
+Understanding and mastering the `git branch` command will give any developer a dynamic and unique tool with which to bring about the `parallel evolution` of a project. 
 
 John Gribbin
 07/27/2017
