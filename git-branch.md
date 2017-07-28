@@ -50,26 +50,27 @@ When it is decided that commits from one branch (lets take "john-testing-branch"
 
 ## A note on Git Branch tracking
 
-Sometimes a developer will find that they need to amend the upstream branch they are tracking for a local branch they are working on, and this can be done with the help of the `-u` option. Lets take the branch example of "john-testing-branch" once again, and lets set it to track the origin:
+Sometimes a developer will find that they need to amend the upstream branch they are tracking for a local branch they are working on, and this can be done with the help of the `-u` option. Lets take the branch example of "john-testing-branch" once again, and lets set it to track the origin. Note the position of the flag this time around:
 
   ```
-  git branch -u origin/john-testing-branch
+  git branch john-testing-branch -u origin
   ```
 
-The `-vv` option can then be used to provide a list out your local branches, outlining what each branch is tracking and if your local branch is ahead, behind or both. 
+The `-vv` option can then be used to provide a list of your local branches, outlining what each branch is tracking and if your local branch is ahead, behind or both. 
 
   ```
   git branch -vv
   ```
 
-See below that "john-testing-branch" and the "master" branches are now both tracking the origin. This means that both branches can now push and pull commits to and from the origin repository (usually found on Github).
+See below that "john-testing-branch" and the "master" branches are now both tracking the remote origin, with "john-testing-branch" ahead of the origin by 6 commits. Both local branches can now push (send) and fetch (receive) commits to and from the origin repository- often located on Github.
 
   ```
-* john-testing-branch                  97cc9a8 [master/john-testing-branch] 
+* john-testing-branch                  97cc9a8 [origin/john-testing-branch: ahead 6] updated john-testing-branch
   master                               3bad51f [origin/master] Initial commit
   ```
 
 ## The real power of `git branch`
+
 Understanding and mastering the `git branch` command will give any developer a dynamic and unique tool with which to bring about the `parallel evolution` of a project. 
 
 John Gribbin
