@@ -69,6 +69,10 @@ In the event that code from your new feature branch is not to be merged with the
   git branch -D john-testing-branch
   ```
 
+One of the very helpful aspects of Git is that it tries really hard not to lose your data for you. Lets say you are currently on your master branch, and you wish to find out if a certain desirable commit from a new feature branch was merged or not to your master. Using the afroementioned `-d` will of course issue a warning when you try to delete the feature branch if the commit was not merged, but there another way to find out.
+
+The `--contains` flag will not only outline if a specific commit is present on the master, but will also infrom you of all other branches that contain it. 
+
 ## A note on Git Branch tracking
 
 A `tracking branch` in Git is a local branch that is connected to a remote branch- referred to as the upstream branch. When you push and pull commits on your local branch, this automatically pushes and pulls to the remote branch that it is tracking. Sometimes a developer will find that they need to amend the upstream branch they are tracking, and this can be done with the help of the `-u` option. Lets take the branch example of "john-testing-branch" once again, and lets set it to track the origin. Note the position of the flag this time around:
