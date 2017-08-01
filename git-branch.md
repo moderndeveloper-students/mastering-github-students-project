@@ -22,7 +22,7 @@ One reason that a developer may wish to create a new branch would be to test a n
   git branch testing-branch
   ```
 
-Simply typing `git branch` into the terminal will now show the presence of two branches within Git: "master", and "testing-branch." An asterisk will appear next to the branch to outline where the HEAD is currently pointing- commonly referred to as the `current branch.`
+Simply typing `git branch` into the terminal will now show the presence of two branches within Git: "master", and "testing-branch." An asterisk will appear next to the current branch.
 
   ```
   git branch
@@ -47,13 +47,23 @@ If for any reason you need to change the name of a branch, lets say from "testin
   git branch -m testing-branch john-testing-branch
   ```
 
-When it is decided that commits from one branch (lets take "john-testing-branch" as the example) should be merged with those present on the master branch, it is often good practice to delete the branch from which the commits were "pulled" afterwards. This will help to maintain a workspace free from un-necessary clutter. Deleting a branch is done using the `-d` option with the git branch command:
+## When and how to delete a branch
+
+As mentioned previously, it is common for branches to be created and utilized for developing a new feature. If the new feature code found on the branch is fully developed and ready to become a permanent fixture within the master branch code, the programmer will perform a process called merging, i.e. to "pull" and "merge" commits present on the new feature branch, with those found on the master. 
+
+When such a merge occurs it is good practice to then delete the branch from which the commits were pulled to help maintain a workspace free from un-necessary clutter. Deleting a `local` branch is done using the `-d` option with the git branch command:
 
   ```
   git branch -d john-testing-branch
   ```
 
-If it is the case that the code from your new feature branch is not to be merged with the master branch, and you are confident that deleting the branch is the option that you want to perform then you can do by capitalizing the previous flag to use `-D` like so:
+Deleting a `remote` branch uses the following command:
+
+  ```
+  git push origin --delete <branch_name>
+  ```
+
+In the event that code from your new feature branch is not to be merged with the master branch, and you wish to delete the branch (or others) irrespective of its merged status you can do so by capitalizing the previous flag and using `-D` instead:
 
   ```
   git branch -D john-testing-branch
@@ -61,7 +71,7 @@ If it is the case that the code from your new feature branch is not to be merged
 
 ## A note on Git Branch tracking
 
-Sometimes a developer will find that they need to amend the upstream branch they are tracking for a local branch they are working on, and this can be done with the help of the `-u` option. Lets take the branch example of "john-testing-branch" once again, and lets set it to track the origin. Note the position of the flag this time around:
+A 'tracking branch' in Git is a local branch that is connected to a remote branch (referred to as the upstream branch). When you push and pull commits on your local branch, it automatically pushes and pulls to the remote branch that it is tracking. Sometimes a developer will find that they need to amend the upstream branch they are tracking, and this can be done with the help of the `-u` option. Lets take the branch example of "john-testing-branch" once again, and lets set it to track the origin. Note the position of the flag this time around:
 
   ```
   git branch john-testing-branch -u origin
