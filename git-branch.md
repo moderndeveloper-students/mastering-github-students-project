@@ -69,9 +69,13 @@ In the event that code from your new feature branch is not to be merged with the
   git branch -D john-testing-branch
   ```
 
-One of the very helpful aspects of Git is that it tries really hard not to lose your data for you. Lets say you are currently on your master branch, and you wish to find out if a certain desirable commit from a new feature branch was merged or not to your master. Using the afroementioned `-d` will of course issue a warning when you try to delete the feature branch if the commit was not merged, but there another way to find out.
+One of the very helpful aspects of Git is that it tries really hard not to lose your data for you. Lets say you are currently on your master branch, and you wish to find out if a certain desirable commit from a new feature branch was merged to the master. Using the afroementioned `-d` will of course issue a warning if you try to delete the feature branch where the commit was created, but there another way to find out specifically which branches contain the commit.
 
-The `--contains` flag will not only outline if a specific commit is present on the master, but will also infrom you of all other branches that contain it. 
+The `--contains` flag helps with this dilemma and output a list of all branches that contain the commit. If you find that the commit is only present on a branch that you wish to delete then you can follow steps to make sure it is merged with your master. Use the flag as follows, making sure to include the unique code associated with the commit in question, like the example `f3b1808` used below:
+
+  ```
+  git branch --contains f3b1808
+  ```
 
 ## A note on Git Branch tracking
 
