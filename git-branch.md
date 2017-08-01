@@ -8,13 +8,13 @@ The pointer itself is referred to as the `HEAD`, and one simple way of thinking 
   cat .git/HEAD
   ```
 
-Whenever you make a change (commit) using Git within a repository you are provided with a `"master"` branch automatically, which points to the last commit you made. Every time you perform a commit, this master branch moves forward. 
+Whenever you make a change (commit) using Git within a repository you are provided with a `"master"` branch automatically, starting at the same place as the origin’s master branch, and which points to the last commit you made. Every time you perform a commit, this master branch moves forward. 
 
 When a new branch is created (and given a suitable title) the user can then move the pointer, i.e. the HEAD, to the newly created branch, and this will provide the user with a new direction in which to take their workflow. This new branch will now move forward automatically with each commit.
 
 The user can at any time switch back to the master branch to make changes, and will then move forward with each new commit from an older version of the repository, as both sets of commits will be isolated in separate branches. 
 
-## How to use the Git Branch command
+## Getting started with the Git Branch command
 
 One reason that a developer may wish to create a new branch would be to test a new feature that may or may not be included in the final project. A good name for this branch could be "testing-branch." This branch can be created using the `git branch` command as follows: 
 
@@ -49,33 +49,36 @@ If for any reason you need to change the name of a branch, lets say from "testin
 
 ## When and how to delete a branch
 
-As mentioned previously, it is common for branches to be created and utilized for developing a new feature. If the new feature code found on the branch is fully developed and ready to become a permanent fixture within the master branch code, the programmer will perform a process called merging, i.e. to "pull" and "merge" commits present on the new feature branch, with those found on the master. 
+As mentioned previously, it is common for branches to be created and utilized to develop a new feature. If the code for the new feature found on the branch is fully developed and ready to become a permanent fixture within the master branch, the programmer will perform a process called merging, i.e. to "merge" commits present on the new feature branch, with those found on the master. 
 
-When such a merge occurs it is good practice to then delete the branch from which the commits were pulled to help maintain a workspace free from un-necessary clutter. Deleting a `local` branch is done using the `-d` option with the git branch command:
+When such a merge occurs it is good practice to then delete the new feature branch from which the commits were "pulled" to help maintain a workspace free from un-necessary clutter. Deleting a `local` branch is done using the `-d` option with the git branch command:
 
   ```
   git branch -d john-testing-branch
   ```
 
-Deleting a `remote` branch uses the following command:
-
-  ```
-  git push origin --delete <branch_name>
-  ```
-
-In the event that code from your new feature branch is not to be merged with the master branch, and you wish to delete it, the above command will output an error message warning you of the unmerged commits. This time around you can delete the branch irrespective of its merged status yby capitalizing the previous flag, and force  to use `-D` instead. This is not regarded as a "safe" way to delete branches and should be used with caution.
+In the event that you try to delete a new feature branch when the code present on it has not yet been merged with the master an error message will occur that warns you of the potential loss of unmerged commits. By simply capitalizing the previous flag, the branch will be deleted irrespective of its merged status. This is not regarded as a "safe" way to delete branches and should only be used with caution to avoid lost code. See below:
 
   ```
   git branch -D john-testing-branch
   ```
 
-One of the very helpful aspects of Git is that it tries really hard not to lose your data for you. Lets say you are currently on your master branch, and you wish to find out if a certain desirable commit from a new feature branch was merged to the master. Using the afroementioned `-d` will of course issue a warning if you try to delete the feature branch where the commit was created, but there another way to find out specifically which branches contain the commit.
+Deleting a `remote` branch uses a slightly different command, note the use of `:`
 
-The `--contains` flag helps with this dilemma and output a list of all branches that contain the commit. If you find that the commit is only present on a branch that you wish to delete then you can follow steps to make sure it is merged with your master. Use the flag as follows, making sure to include the unique code associated with the commit in question, like the example `f3b1808` used below:
+  ```
+  git push origin :branch-to-delete
+  ```
+
+## Help finding a commit
+
+One of the very helpful aspects of Git is that it tries really hard not to lose your data for you. Lets say you are currently on your master branch, and you wish to find out if a certain desirable commit from a new feature branch was merged to the master. Using the aforementioned `-d` will of course issue a warning when you try to delete the new feature branch if there are unmerged commits present on it, but there is another way to find out specifically where a single commit is present.
+
+Using the `--contains` flag will output a list of all branches that contain a specified commit. Use the flag as follows, making sure to include the unique code associated with the commit in question, we can easily find out where the commit is present within the exisiting branches. Take the commit `f3b1808` as an example and see how the command is entered below:
 
   ```
   git branch --contains f3b1808
   ```
+
 
 ## A note on Git Branch tracking
 
