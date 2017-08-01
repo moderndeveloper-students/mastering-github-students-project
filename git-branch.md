@@ -63,7 +63,7 @@ Deleting a `remote` branch uses the following command:
   git push origin --delete <branch_name>
   ```
 
-In the event that code from your new feature branch is not to be merged with the master branch, and you wish to delete the branch (or others) irrespective of its merged status you can do so by capitalizing the previous flag and using `-D` instead:
+In the event that code from your new feature branch is not to be merged with the master branch, and you wish to delete it, the above command will output an error message warning you of the unmerged commits. This time around you can delete the branch irrespective of its merged status yby capitalizing the previous flag, and force  to use `-D` instead. This is not regarded as a "safe" way to delete branches and should be used with caution.
 
   ```
   git branch -D john-testing-branch
@@ -71,7 +71,7 @@ In the event that code from your new feature branch is not to be merged with the
 
 ## A note on Git Branch tracking
 
-A 'tracking branch' in Git is a local branch that is connected to a remote branch (referred to as the upstream branch). When you push and pull commits on your local branch, it automatically pushes and pulls to the remote branch that it is tracking. Sometimes a developer will find that they need to amend the upstream branch they are tracking, and this can be done with the help of the `-u` option. Lets take the branch example of "john-testing-branch" once again, and lets set it to track the origin. Note the position of the flag this time around:
+A `tracking branch` in Git is a local branch that is connected to a remote branch- referred to as the upstream branch. When you push and pull commits on your local branch, this automatically pushes and pulls to the remote branch that it is tracking. Sometimes a developer will find that they need to amend the upstream branch they are tracking, and this can be done with the help of the `-u` option. Lets take the branch example of "john-testing-branch" once again, and lets set it to track the origin. Note the position of the flag this time around:
 
   ```
   git branch john-testing-branch -u origin
