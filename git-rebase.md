@@ -1,4 +1,8 @@
-`git rebase` is one of two Git commands that helps in integrating changes from one branch onto another. The other command that helps with integrating changes is `git merge`. Merge is always a forward moving change record. Alternatively, rebase has powerful history rewriting features. Rebase itself has 2 main modes: "manual" and "interactive" mode. 
+`git rebase` is one of two Git commands that helps in integrating changes from one branch onto another. The other command that helps with integrating changes is `git merge`. Merge is always a forward moving change record. Alternatively, rebase has powerful history rewriting features.
+
+The main difference between those two commands is that `merge` is a non-destructive operation: the existing branches are not changed in any way. That avoid a lot of pitfalls but if the repository is heavily active it can become really messy. `rebase`, on the other side, moves the entire feature branch on the tip of the master branch, incorporating all the new commits in a linear way. The major benefit is that you get a much cleaner repository history but re-writing project history can be potentially catastrophic for your collaboration workflow.
+
+Rebase itself has 2 main modes: "manual" and "interactive" mode.
 
 The git rebase command allows you to easily change a series of commits, modifying the history of your repository. You can reorder, edit, or squash commits together.
 
@@ -6,7 +10,7 @@ Typically, one would use git rebase to:
 
 1) Edit previous commit messages
 2) Combine multiple commits into one
-3) 	Delete or revert commits that are no longer necessary
+3) Delete or revert commits that are no longer necessary
 
 Common options available while rebasing:
 
@@ -17,7 +21,7 @@ Common options available while rebasing:
 | edit | If you choose to edit a commit, you'll be given the chance to amend the commit, meaning that you can add or change the commit entirely. You can also make more commits before you continue the rebase. This allows you to split a large commit into smaller ones, or, remove erroneous changes made in a commit. |
 | squash | This command lets you combine two or more commits into a single commit. A commit is squashed into the commit above it. Git gives you the chance to write a new commit message describing both changes. |
 | fixup | This is similar to squash, but the commit to be merged has its message discarded. The commit is simply merged into the commit above it, and the earlier commit's message is used to describe both changes.|
-| exec | This lets you run arbitrary shell commands against a commit. |   
+| exec | This lets you run arbitrary shell commands against a commit. |
 
 Git rebase interactive is when git rebase accepts an `-- i` argument. This stands for "Interactive." Without any arguments, the command runs in standard mode.
 
