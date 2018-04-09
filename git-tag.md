@@ -1,105 +1,273 @@
-#### zero to hundred with `git tag`
+# Introduction to Git Tag
 
-# `git tag` Is All About Version Tagging!
+What is a tag in Git? Tagging is a way to create identifiers for commits in Git. 
 
-When working on large projects that are constantly evolving, it becomes necessary to be able to classify major changes into versions for easier access.
+## Tags vs Branches
 
-The `git tag` is the git command that makes this possible. It is used to tag major changes in a repository by naming the changes as versions along with adding a message to the version description to easily identify such changes at a later date.
+Tagging must not be confused with branching. Branches in Git are snapshots, think of a picture of 
+the current state of your code.
 
-To help you understand this completely, we'll go through how to tag a project using the `git tag` command.
+ A branch is generally associated with a base branch, most of the times named `master`. Branches 
+can change, in other words, when a commit happens, the `master` branch will be updated to point to 
+the newest commit, tags, on the other hand, are created to point to a specific commit, and do not 
+change. 
 
-## Creating tags
+## Why to `tag`
+In software development, there is the concept of "versioning", so we say "I am running version 
+v8.0.0, but the latest version is v10.3.0" of a given software application.
 
-Let's go ahead and tag a project repo named 'pills' using `git tag` and     I'll explain every line of code.
+Git is a VCS (Version Control System) application, and there is guidelines for it, see [Semantic 
+Versioning](https://semver.org/). 
 
-```
-65black@ElevenPC MINGW64 ~/Desktop/workspace/pills (master)
-$ pwd
-/c/Users/65black/Desktop/workspace/pills
+Git tags help developers keep track of versions and releases. 
 
-65black@ElevenPC MINGW64 ~/Desktop/workspace/pills (master)
-$ git tag -a 'v1.0' -m 'Example using Git Tag' HEAD
+Tagging is used to track changes in code in a very granular way, helping you go to a specific 
+commit in your branch history, that is way is so important to use an easily readable tracking 
+system for humans to refer to.
 
-```
-First, we use the `pwd` command to ensure that we're in the right repo. Note that this is not a necessary step to using `git tag`. I just like being thorough.
+## Tags usage with examples
+The `git tag` command and its different optional flags help developers with tag management, you can 
+create, deleted, list, or verify tags. Like most flags used with the different Git command, some of 
+them can be used together, others are mutually exclusive, and some are implied.
 
-Next, we actually use the `git tag` command to tag our repo as 'v1.0' and add a message 'Example using Git Tag' to help us access and understand it easier in the future.
+Git has two types of tags - annotated and lightweight.
 
-The first flag `-a` is used to give a name to the tag you're attaching to your repo. The `-m` flag is used to add a message to the tag so that you can understand it easily in the future.
+Annotated tags includes information about the author and a time stamp to the tag, this is important 
+in case you need to communicate with the the tag's creator.
 
-### Commits are also welcome
+Lightweight tags should be used locally only, as they don't provide any additional information and 
+it may be difficult to find the originator if needed. 
 
-One great thing about `git tag` is that you can also use it to tag individual commits. Say I have a commit with a shortened hash id ` 3b8b40f` that I want to tag, the command will look like this:
+### Examples:
 
-```
-$ git tag -a 'v1.0' -m 'My very first Release' 3b8b40f
-```
-You can see that the only difference in this bit of code and the previous one is the replacement of the `HEAD` argument with `3b8b40f` which is actually the shortened ID of the commit we're tagging.
-
-## Viewing Tags
-
-Why create something you will be unable to see at a later date? This is why `git tag` also comes with flags for viewing previously created tags.
-
-Say we want to view all the tags in our current 'pills' project, our command would look like this: 
-
-```
-$ git tag -l
-v1.0
-```
-The first line is just the `git tag` command with  an `-l` flag passed to it. This flag lists all the tags in the current project.
-
-If you want to see more details about a particular tag, you will need to use the `git show` command. Here's an example:
+#### Tagging
+The most basic form of the command without flags. The command returns a list of tags (if any), 
+otherwise it will output an empty list.
 
 ```
-65black@ElevenPC MINGW64 ~/Desktop/workspace/pills (master)
-$ git show v1.0
-tag v1.0
-Tagger: 65black <kevinokeh@gmail.com>
-Date:   Wed Mar 28 21:22:21 2018 +0100
+rafael@Lat_E5550 MINGW64 ~/my_repo_test (tags_branch)
+$ git tag
 
-Example using Git Tag
+```
+Now, will create and add/commit a file that we will use for our example:
 
-commit 689202728ce95ca870745bfe8ef4fc07294de182 (HEAD -> master, tag: v1.0, origin/master, origin/HEAD)
-Author: 65black <kevinokeh@gmail.com>
-Date:   Wed Mar 28 20:44:05 2018 +0100
+```
+rafael@Lat_E5550 MINGW64 ~/my_repo_test (tags_branch)
+$ touch attendees.md
 
-    added a dummy file for a git tag tutorial
+rafael@Lat_E5550 MINGW64 ~/my_repo_test (tags_branch)
+$ echo -e "Name: John Doe\nName: Jane Doe" >> attendees.md
 
-diff --git a/commit.txt b/commit.txt
+rafael@Lat_E5550 MINGW64 ~/my_repo_test (tags_branch)
+$ cat attendees.md
+Name: John Doe
+Name: Jane Doe
+
+rafael@Lat_E5550 MINGW64 ~/my_repo_test (tags_branch)
+$ git add attendees.md
+warning: LF will be replaced by CRLF in attendees.md.
+The file will have its original line endings in your working directory.
+
+rafael@Lat_E5550 MINGW64 ~/my_repo_test/my_repo_test (tags_branch)
+$ git commit attendees.md
+warning: LF will be replaced by CRLF in attendees.md.
+The file will have its original line endings in your working directory.
+[tags_branch 1ac667f] Initial Version of attendees list.
+ 1 file changed, 2 insertions(+)
+ create mode 100644 attendees.md
+
+```
+#### Create tags for commits. 
+We will call our first our first commit v0 (includes adding the file with its initial content).
+
+```
+rafael@Lat_E5550 MINGW64 ~/my_repo_test (tags_branch)
+$ git tag v0
+```
+And modify the attendees.md for a second commit.
+
+```
+rafael@Lat_E5550 MINGW64 ~/my_repo_test (tags_branch)
+$ echo "Name: Donald Duck" >> attendees.md
+
+rafael@Lat_E5550 MINGW64 ~/my_repo_test (tags_branch)
+$ cat attendees.md
+Name: John Doe
+Name: Jane Doe
+Name: Donald Duck
+
+rafael@Lat_E5550 MINGW64 ~/my_repo_test (tags_branch)
+$ git add attendees.md
+warning: LF will be replaced by CRLF in attendees.md.
+The file will have its original line endings in your working directory.
+
+rafael@Lat_E5550 MINGW64 ~/my_repo_test (tags_branch)
+$ git commit attendees.md
+warning: LF will be replaced by CRLF in attendees.md.
+The file will have its original line endings in your working directory.
+[tags_branch 8804ae5] Added Donald to the list.
+ 1 file changed, 1 insertion(+)
+```
+
+Let's create our second tag, which we call v1.
+
+```
+rafael@Lat_E5550 MINGW64 ~/my_repo_test (tags_branch)
+$ git tag v1
+```
+
+#### Listing and showing tag contents
+
+Issuing `git tag` without flags will show the list of existing tags.
+
+```
+rafael@Lat_E5550 MINGW64 ~/my_repo_test (tags_branch)
+$ git tag
+v0
+v1
+```
+
+Now, we can reference specific commits identified by our version names. We can see what the 
+difference between one commit and the other is.
+
+```
+rafael@Lat_E5550 MINGW64 ~/my_repo_test (tags_branch)
+$ git show v0
+commit 1ac667f577ed8ba8ceddf634f41fac2fc73ddc2f (tag: v0)
+Author: Rafael Huijon <rhuijonp@gmail.com>
+Date:   Sat Apr 7 11:38:49 2018 -0700
+
+    Initial Version of attendees list.
+
+diff --git a/attendees.md b/attendees.md
 new file mode 100644
-index 0000000..e69de29
+index 0000000..569ee96
+--- /dev/null
++++ b/attendees.md
+@@ -0,0 +1,2 @@
++Name: John Doe
++Name: Jane Doe
 
+rafael@Lat_E5550 MINGW64 ~/my_repo_test (tags_branch)
+$ git show v1
+commit 8804ae5bea394ea38e90005fc2c005c51f666dba (HEAD -> tags_branch, tag: v1)
+Author: Rafael Huijon <rhuijonp@gmail.com>
+Date:   Sat Apr 7 11:54:25 2018 -0700
 
-```
-Pretty cool huh?
+    Added Donald to the list.
 
----
-#### Note: If you cannot exit `git show`, press Q
-----
-
-## Deleting Tags
-
-Yes, you can also delete previously created tags very easily using the `-d` flag. Here's how we'd delete our previous 'v1.0' tag.
-
-```
-$ git tag -d v1.0
-Deleted tag 'v1.0' (was 085d0c2)
-```
-To delete the tag from the remote repository too, we'd do this:
-
-```
-$ git push origin :v1.0
-To git@github.com:65black/pills.git
-- [deleted]
-v1.0
+diff --git a/attendees.md b/attendees.md
+index 569ee96..ba74ad9 100644
+--- a/attendees.md
++++ b/attendees.md
+@@ -1,2 +1,3 @@
+ Name: John Doe
+ Name: Jane Doe
++Name: Donald Duck
 ```
 
-## Conclusion
+#### Tagging old commits
 
-We have hardly scratched the surface of the `git tag` command as it is a very powerful command with tons of uses.
+You can tag old commits by referencing the commit's id, which you can see using `git log`. 
+Here our commit starting with 8dbc6105b3 is tagged as v2 and then it shows in our list of tags
 
-I recommend going through the documentation of this powerful command from the official [Git Docs](https://git-scm.com/docs/git-tag). Learning how to use this tool effectively will give you another useful addition to your toolkit as a programmer.
+```
+rafael@Lat_E5550 MINGW64 ~/my_repo_test (tags_branch)
 
-Ovie Okeh |
-March 28, 2018 |
-Career Path 3: Modern Frontend Developer
+# The log list has been cut for spacing purposes to show only the log entry we are working with
+
+$ git log
+commit 8dbc6105b3ec0cab9ddfc337e1f2e43a26914e2f
+Author: rhuijonp <35969612+rhuijonp@users.noreply.github.com>
+Date:   Mon Apr 2 10:59:20 2018 -0700
+
+    Fixing spelling mistakes
+
+rafael@Lat_E5550 MINGW64 ~/my_repo_test (tags_branch)
+$ git tag v2 8dbc6105b3
+
+rafael@Lat_E5550 MINGW64 ~/my_repo_test (tags_branch)
+$ git tag
+v0
+v1
+v2
+
+```
+
+#### Pushing tags to remote
+Pushing tags to remote a repository requires the use  of the --tags flag, like so:
+ 
+```
+rafael@Lat_E5550 MINGW64 ~/my_repo_test (tags_branch)
+$ git push origin --tags
+Counting objects: 21, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (15/15), done.
+Writing objects: 100% (21/21), 14.38 KiB | 1.03 MiB/s, done.
+Total 21 (delta 5), reused 0 (delta 0)
+remote: Resolving deltas: 100% (5/5), done.
+To github.com:rhuijonp/my_repo_test.git
+ * [new tag]         v0 -> v0
+ * [new tag]         v1 -> v1
+ * [new tag]         v2 -> v2
+
+```
+
+#### Deleteing tags locally
+To delete a tag, you need to use the -d flag along with the `git tag` command. 
+**Note that locally deleted tags must be manually deleted remotely**
+
+```
+rafael@Lat_E5550 MINGW64 ~/my_repo_test (tags_branch)
+$ git tag -d 'v2'
+Deleted tag 'v2' (was 8dbc610)
+
+rafael@Lat_E5550 MINGW64 ~/my_repo_test (tags_branch)
+$ git tag
+v0
+v1
+
+```
+
+#### Deleting tags remotely
+And removing tags from a remote location gets done in similar a locally, but the path to the file 
+that keeps track of the tags is used. 
+We can see the command output showing a list of the removed tag(s).
+
+```
+rafael@Lat_E5550 MINGW64 ~/my_repo_test (tags_branch)
+$ git push origin :refs/tags/v2
+To github.com:rhuijonp/my_repo_test.git
+ - [deleted]         v2
+```
+
+### Summary
+Git, been a VCS, helps developers manage code project collaboration by way of keeping detailed 
+track of changes to code. But GIT makes developers life easier by providing humans a way to easily 
+what changes come first. 
+
+Git keeps commit logs so that they can easily find a commit, but tagging makes it possible for 
+humans to tell which comes first just by glancing to a tag name. 
+
+Git `git tag` command is a powerful tool for developers, see the [official 
+documentation](https://git-scm.com/docs/git-tag) here.You may also find [this 
+article](http://nvie.com/posts/a-successful-git-branching-model/) useful, as it graphically shows 
+the difference between branching and tagging.   
+  
+ 
+
+
+
+
+
+
+
+
+
+ 
+
+  
+
+
+
+   
