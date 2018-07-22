@@ -2,7 +2,7 @@
 
 ## Overview
 
-The `git add` command is used to mark which file changes made by a user in a Git repository need to be recorded permanently. 
+The `git add` command is used to mark which file changes made by a user in a Git repository need to be recorded permanently.
 Each Git repo has a local database in the .git directory that stores all recorded changes made to the files within the repo.
 The `git add` command is the first stage in permanently recording changes to this database.
 
@@ -12,7 +12,7 @@ The Git process for managing changes to files works on a three-stage process:
 
 1. Modify files within the local Git repo
 2. Stage the files (using `git add`), adding snapshots of the changes you have made to the staging area
-3. Commit the files using `git commit`, which permanently stores the files as they are in the staging area to the Git directory 
+3. Commit the files using `git commit`, which permanently stores the files as they are in the staging area to the Git directory
 
 Git monitors the state of all files within the repository by comparing each file to the version stored in the staging area and the permanent copy stored in the repo.
 
@@ -24,16 +24,16 @@ The process of updating the files in a Git repository is as follows:
 
 `modify files -> add files to staging area -> commit files`
 
-The staging area contains all files that are to be included in the next commit. 
+The staging area contains all files that are to be included in the next commit.
 
 The `git add` command is used to add new and modified files to the staging areas, ready to be included when the next `git commit` command is run.
 
 The `git add` process can be run multiple times, cumulatively building up a collection of modified files in the staging area ready to be included in a single `commit`
 
 ### Ignored Files
-If there are particular files or folders that the user wants to permanently exclude from the Git database, the user can mark them to be ignored by adding them to the `.gitignore` file. Examples of files that the user may wish to ignore are log files, or compiled files created during a code build. 
+If there are particular files or folders that the user wants to permanently exclude from the Git database, the user can mark them to be ignored by adding them to the `.gitignore` file. Examples of files that the user may wish to ignore are log files, or compiled files created during a code build.
 
-Git does not track any changes to files listed in the `.gitignore` file. The `git status` command will not display any details regarding changes to these files, and the `git add` command will not include ignored files, as defined in the `.gitignore` file, by default. 
+Git does not track any changes to files listed in the `.gitignore` file. The `git status` command will not display any details regarding changes to these files, and the `git add` command will not include ignored files, as defined in the `.gitignore` file, by default.
 
 If required, the user can add ignored files with the `git add -f` (force) option.
 
@@ -69,7 +69,7 @@ Further details on the `git reset` command can be found here: [git reset documen
 
 - To add all new or modified files in the Git repo to staging:
 
-`git add [-A-|-all]`
+`git add [-A-|-all] <specify dir> `
 
 - To force an a specific ignored file to be added to the staging area:
 
