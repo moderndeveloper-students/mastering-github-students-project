@@ -3,7 +3,7 @@
 ## *Overview:*
 1. Git is a distributed version control system which has various config files to have the control over your git working. 
 1.  These config files are present at various levels in your machine like
-    i. Entire machine (Entire Operatin system for all users), specified by     ```--system```
+    i. Entire machine (Entire Operating system for all users), specified by     ```--system```
     ii.  Specific to logged in user, specified by ```--global```
    iii. Specific to a repository, specified by ```--local```. This is default if one doesn't specify any file option
 1. A git config file has sections with key value pair and looks like below 
