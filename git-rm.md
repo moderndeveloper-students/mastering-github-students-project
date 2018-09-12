@@ -29,7 +29,7 @@ If you want to remove one file simply navigate to your folder
 
 and enter the following command
 
-`rm filename.rm`
+`rm filename.md`
 
 This will remove the file from your repository. Remember if your working 
 on your local machine you will still need to commit these changes to the 
@@ -41,6 +41,22 @@ end like this:
 
 `git rm fileOne.md fileTwo.md fileThree.md`
 
+An alternative way is to using the `*` feature to remove all files with certain text.
 
-Daniel Morgan
-12/09/2018
+`git rm *.txt` > Removes all files ending with .txt
+
+### Removing Folders
+
+If you try using `rm foldername\` you'll notice it does not work. Thats because you need to use a *flag* to state its a folder type that you are removing.
+
+`git rm -rf` will remove a folder
+
+### Other useful flags when using `git rm`
+`git rm --dry-run *.md` will not actually delete the files by display what would be removed. This is really useful when removing multiple files to ensure you don't delete things by mistake. 
+
+`git rm --cached fileOne.rm` will remove the file from your repository but will still be held in your local environment
+
+`git reset HEAD` is not so much a remove command but useful if you have added files with have not yet been commited.
+
+Check out the [manual](https://git-scm.com/docs/git-rm) for a complete list of options.
+
