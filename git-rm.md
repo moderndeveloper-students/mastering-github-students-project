@@ -1,4 +1,4 @@
-## Introduction to the `Git RM` command
+## Introduction to the `git rm` command
 
 The 'git rm' command is useful for removing files from you repository. 
 Remember to use with caution!
