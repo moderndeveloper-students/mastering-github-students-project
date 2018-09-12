@@ -20,11 +20,7 @@ repository and then git command to do this is `git rm`.
 ## How to use the `git rm` command
 
 ![How 
-To](http://websearchsecrets.com/wp-content/uploads/2017/08/how-to-find-images-with-google.jpg)
-
-<br/>
-/git_repo/$ `git rm fileName.rm`
-<br/>
+To](https://www.google.co.th/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwiXkJ2Dw7TdAhUHY48KHTQHCWQQjRx6BAgBEAU&url=https%3A%2F%2Fsherocommerce.com%2Fusing-git-for-magento-website-maintenance%2F&psig=AOvVaw3rXLTE0Qo0k6g_qdgCBfxU&ust=1536809288750231)
 
 ### Removing files
 If you want to remove one file simply navigate to your folder
