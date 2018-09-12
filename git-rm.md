@@ -24,9 +24,13 @@ To](https://smhttp-ssl-31623-shero.nexcesscdn.net/wp-content/uploads/2016/01/git
 
 ### Removing files
 If you want to remove one file simply navigate to your folder
+
 `cd folder name`
+
 and enter the following command
+
 `rm filename.rm`
+
 This will remove the file from your repository. Remember if your working 
 on your local machine you will still need to commit these changes to the 
 origin repo. You can learn more about `git commit` on [git commit 
