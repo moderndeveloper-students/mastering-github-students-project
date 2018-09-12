@@ -20,8 +20,7 @@ repository and then git command to do this is `git rm`.
 ## How to use the `git rm` command
 
 ![How 
-To](https://theyouideology.files.wordpress.com/2013/06/idontknow.jpg)
-https://theyouideology.files.wordpress.com/2013/06/idontknow.jpg
+To](http://websearchsecrets.com/wp-content/uploads/2017/08/how-to-find-images-with-google.jpg)
 
 <br/>
 /git_repo/$ `git rm fileName.rm`
